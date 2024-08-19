@@ -13,6 +13,8 @@ URL Pública: https://formosaweb.net.br/portal/1/agendamentomontagem
 
 ![image](https://github.com/user-attachments/assets/33b0a582-e044-4ff6-b473-fa605ebda4af)
 
+![image](https://github.com/user-attachments/assets/ea1e5694-8a64-4663-a9fb-30ed3fe9f323)
+
 ### Tecnologias Utilizadas
 
 * PL-SQL.
@@ -33,15 +35,15 @@ URL Pública: https://formosaweb.net.br/portal/1/agendamentomontagem
 ```
 Comando 1
 ```
-Cliente finaliza a compra de um produto do venda-assistida da retaguarda RMS e via PDV Zanthus realiza o pagamento e acessa o portal de agendamentos de móveis e realiza o agendamento com o número do pedido e o cpf do cliente e selecionando uma data para o montador de móveis ser direcionado até seu respectivo endereço.
+A execução é automatica, é iniciado a criação "startprocess" do processo quando cliente finaliza a compra de um ou mais produto(s) do venda-assistida da retaguarda RMS e via PDV Zanthus realiza o pagamento e acessa o portal de agendamentos de móveis e realiza o agendamento com o número do pedido e o cpf do cliente e selecionando uma data para o montador de móveis ser direcionado até seu respectivo endereço.
 
 ## 📌 (Montagem de Móveis) - Informações importantes sobre a aplicação 📌
 
-Foram encontrados casos de NF que se aproximam da geração de NF Fluig porém não foram originadas pelo o controle da tabela "fluig.ti_desossa_controle_nfe" e o sequencial da tabela rms.fat_atacado não existe no controle do fluig, como a aplicação/rotina foi projetada para funcionar usando tabelas personalizadas do Fluig e agendas do retaguarda RMS em uma API que é para uso no RMS, o fluig apenas faz uma requisição PUT para gerar NFe e esta chamada realiza do lado do RMS insert na tabela rms.fat_atacado onde é gerado pelas PROC do RMS as NFs, sempre é importante revisar os sequenciais entre a RMS.FAT_ATACADO(NUMERO_SEQUENCIAL) e FLUIG.TI_DESOSSA_CONTROLE_NFE(FAT_NUMERO_SEQUENCIAL).
+Foram encontrados casos onde existem divergencia de informaçãoes no cadastro da retaguarda RMS, como também falta de classificação correta dos produtos que são disponiveis para montagem e não estão com flag igual "Sim" disponivel para montar, cliente que repassa informação incorreta como comprou em um CPF de terceiro e no agendamento informa seu CPF ou pedido incorreto.
 
 ## ⚠️ Problemas enfrentados
 
-Listo abaixo os problemas enfrentados mais comuns de acontecer no processo desossa.
+Listo abaixo os problemas enfrentados mais comuns de acontecer no processo de Montagem de Móveis.
 
 ### Problema 1:
 Descrição do problema:
