@@ -3,7 +3,7 @@ Nome do processo Diagrama: "montagem_moveis".
 
 Nome do Portal Widget(Pública): "agendamentomontagem".
 
-Desenvolvimento BPM de um diagrama de processo atrelado a um formulário HTML5 para acesso de clientes que fizeram a compra de produtos de montagem de móveis, produtos este que estão cadastrados na retaguarda RMS e ficam disponiveis para emissão do pedido de compra com validade diária.
+Desenvolvimento BPM de um diagrama de processo atrelado a um formulário HTML5 para acesso de cliente(s) que realizaram a compra de um ou mais produto(s) de montagem de móveis, produtos este que estão cadastrados na retaguarda RMS e ficam disponiveis para emissão do pedido (presencial ou e-commerce) de compra.
 
 URL Pública: https://formosaweb.net.br/portal/1/agendamentomontagem
 
