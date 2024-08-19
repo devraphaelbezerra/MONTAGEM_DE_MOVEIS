@@ -47,9 +47,10 @@ Listo abaixo os problemas enfrentados mais comuns de acontecer no processo de Mo
 
 ### Problema 1:
 Descrição do problema:
-Cliente entra em contato com a recepção da filial origem da compra relatando que não consegue agendar a montagem de móvel pois retorna o erro como se o produto não foi entregue.
-* Como solucionar: Deve-se acessar as consulta no banco de dados e confirmar se .
+Cliente entra em contato com a recepção da filial origem da compra relatando que não consegue agendar a montagem de móvel pois retorna o erro como se o produto não foi entregue ou cliente não comprou.
+* Como solucionar: Deve-se consultar no banco de dados e confirmar se as informações inseridas estão corretas assim também se os itens retornados na coluna [DESCRICAO] são realmente para montagem e estão corretamente configurados na coluna [TIPO_1OU6] e [ITEM_MONTAVEL], somando também na verificação a coluna [EXISTE_RECEITA] igual a zero, [HORAS_MONTAGEM] e [QTDE_MONTADORES] diferentes de zero. Após analisar e corrigir estes pontos na consulta, pode solicitar para o cliente testar novamente, segue a query abaixo:
 ```
+--CONSULTANDO PENDENCIAS:
 select  
     (select PED_CGC_CPF from rms.ag3pvend@LK_RMS BX where BX.PED_NUM_PEDIDO_CP = PED_NUM_PEDIDO_DT) AS CPF,
     a.PED_NUM_PEDIDO_DT AS CODPEDIDO,
@@ -77,12 +78,18 @@ from rms.VW_AG3PVEDT@lk_rms a
     inner join rms.aa3citem@lk_rms b on a.PED_PROD_PRINC_DT = b.GIT_COD_ITEM
         inner join rms.AA1DITEM@lk_rms c on c.DET_COD_ITEM = b.GIT_COD_ITEM
     where 1=1
-    AND PED_NUM_PEDIDO_DT = 3160298
-    ;
+    AND PED_NUM_PEDIDO_DT = 3160298;
+
+--UPDATE CASO NECESSÁRIO:
+update rms.AA1DITEM@lk_rms set DET_ITEM_MONTAVEL = 'S' where 1=1 and DET_COD_ITEM IN ( 135080 , 956606 , 956578 );
+
+--TABELA DO FLUIG RESPONSÁVEL PELO CADASTRO DE HORAS E QUANTIDADE DE MONTADOR:
+select * from fluig.ti_montagem_agendamento_param p where p.codigo_grupo = 10 and p.codigo_subgrupo = 5;
+
 ```
 
 ### Problema 2:
 Descrição do problema:
-O usuários que estão responsáveis reclamam que a desossa não executou no dia anterior.
+Após inserir CPF e PEDIDO retorna nenhuma informação, existe uma consulta principal no dataset para buscar informações do cliente e item de faturamente do pedido, geração de nf na logistica o nome dele é: [ds_consulta_rms.js].
 * Como solucionar: Deve-se revisar se a tarefa no banco que executa uma PROC da Visual MIX RMS está com o status BROKEN==Y, o job quando bloqueado não funciona e nem processas as NFe.
 
