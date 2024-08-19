@@ -3,7 +3,7 @@ Nome do processo Diagrama:"montagem_moveis".
 
 Nome do Portal Widget Pública:"agendamentomontagem".
 
-Desenvolvimento BPM de um diagrama de processo atrelado a um formulário HTML5 para acesso de clientes que fizeram a compra de produtos de montagem de móveis, produtos este que estão cadastrados na retaguarda RMS e ficam disponiveis para emissão do pedido de compra com validade diária e o cliente finaliza a compra via PDV e volta a este portal referenciado aqui e realiza o agendamento com o número do pedido e o cpf do cliente.
+Desenvolvimento BPM de um diagrama de processo atrelado a um formulário HTML5 para acesso de clientes que fizeram a compra de produtos de montagem de móveis, produtos este que estão cadastrados na retaguarda RMS e ficam disponiveis para emissão do pedido de compra com validade diária.
 
 URL Pública: https://formosaweb.net.br/portal/1/agendamentomontagem
 
@@ -29,26 +29,13 @@ URL Pública: https://formosaweb.net.br/portal/1/agendamentomontagem
 * backbone-min.js
 * jquery.mask.js
 
-## Como rodar o projeto ✅
+## Como executar o projeto ✅
 ```
 Comando 1
 ```
-![image](https://github.com/user-attachments/assets/3e6c3a9a-c27a-41ee-9753-395d8a800028)
-Realizar o select via tabela:"fluig.ti_desossa_item_parametros" e verificar se a(s) loja(s) estão marcadas como FLGATIVO:"A" e a hora de execução na coluna: "HORA_INIC_EXECUCAO". 
+Cliente finaliza a compra de um produto do venda-assistida da retaguarda RMS e via PDV Zanthus realiza o pagamento e acessa o portal de agendamentos de móveis e realiza o agendamento com o número do pedido e o cpf do cliente e selecionando uma data para o montador de móveis ser direcionado até seu respectivo endereço.
 
-```
-Comando 2
-```
-![355586772-4558c72c-3c13-48f9-a2ae-984a814b16e2](https://github.com/user-attachments/assets/d4b0d5ef-875d-4be4-bc1a-b7180ea9e80e)
-Após isso, acessar o fluig como user administrador, ir em Painel de controle > Parâmetros técnicos > Agendador de tarefas e procurar pelo processo nome: "robo_de_carcaca_desossa" marcar e executar.
-
-```
-Comando 2
-```
-![image](https://github.com/user-attachments/assets/0b8a43fb-25c9-4bfb-8a22-dc8da871412e)
-Acompanhar via log do fluig a execução ou via tabela de controle da desossa:"fluig.ti_desossa_controle_nfe" de ficam salvas as execuções e rastreamentos dos cortes.
-
-## 📌 (Robo de Carcaça Desossa) - Informações importantes sobre a aplicação 📌
+## 📌 (Montagem de Móveis) - Informações importantes sobre a aplicação 📌
 
 Foram encontrados casos de NF que se aproximam da geração de NF Fluig porém não foram originadas pelo o controle da tabela "fluig.ti_desossa_controle_nfe" e o sequencial da tabela rms.fat_atacado não existe no controle do fluig, como a aplicação/rotina foi projetada para funcionar usando tabelas personalizadas do Fluig e agendas do retaguarda RMS em uma API que é para uso no RMS, o fluig apenas faz uma requisição PUT para gerar NFe e esta chamada realiza do lado do RMS insert na tabela rms.fat_atacado onde é gerado pelas PROC do RMS as NFs, sempre é importante revisar os sequenciais entre a RMS.FAT_ATACADO(NUMERO_SEQUENCIAL) e FLUIG.TI_DESOSSA_CONTROLE_NFE(FAT_NUMERO_SEQUENCIAL).
 
